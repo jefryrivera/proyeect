@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo de Páginas Web - Proyecto Final</title>
+    <!-- CSS Bootstrap via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; font-family: Arial, sans-serif; }
+        
+        /* Lógica de secciones dinámicas por CSS (:target) */
+        .seccion-dinamica { 
+            display: none; 
+            background-color: white; 
+            border: 1px solid #dee2e6; 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin-top: 30px;
+        }
+        .seccion-dinamica:target { display: block; }
+        
+        .tarjeta-enlace { text-decoration: none; transition: transform 0.2s; }
+        .tarjeta-enlace:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+
+    <!-- Menú Navbar de Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#inicio">Plataforma Web</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quienes-somos">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#registro">Registro</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Encabezado Principal -->
+    <header class="bg-light text-center py-5 border-bottom">
+        <div class="container">
+            <h1 class="display-5 fw-bold text-primary">Plataforma para diseñar páginas web</h1>
+            <p class="lead text-secondary">Integración de Bootstrap con navegación dinámica</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+
+        <section id="inicio" class="text-center mb-5">
+            <h3 class="text-primary">Inicio</h3>
+            <p class="text-muted">Selecciona una opción para desplegar la información:</p>
+        </section>
+
+        <!-- Sistema de rejilla de Bootstrap (Grid System) -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <a href="#quienes-somos" class="card tarjeta-enlace h-100 shadow-sm border-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">Quiénes Somos</h5>
+                        <p class="card-text text-dark">Información del equipo y filosofía.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#servicios" class="card tarjeta-enlace h-100 shadow-sm border-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">Servicios</h5>
+                        <p class="card-text text-dark">Tecnologías y soluciones web.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#registro" class="card tarjeta-enlace h-100 shadow-sm border-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">Registro</h5>
+                        <p class="card-text text-dark">Administrar elementos dinámicamente.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sección Quiénes Somos -->
+        <section id="quienes-somos" class="seccion-dinamica shadow-sm">
+            <h3 class="text-primary">Quiénes Somos</h3>
+            <p>En nuestro equipo nos dedicamos a transformar ideas en realidades digitales a través del desarrollo de aplicaciones web dinámicas, eficientes y seguras...</p>
+            <img src="https://via.placeholder.com/600x300" class="img-fluid rounded my-3" alt="Desarrollo Web">
+            <br>
+            <a href="#inicio" class="btn btn-outline-primary mt-2">✕ Ocultar sección</a>
+        </section>
+
+        <!-- Sección Servicios -->
+        <section id="servicios" class="seccion-dinamica shadow-sm">
+            <h3 class="text-primary">Servicios o Productos</h3>
+            <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item">Desarrollo Frontend: Interfaces modernas y responsivas.</li>
+                <li class="list-group-item">Desarrollo Backend: Lógica de servidor y APIs seguras.</li>
+            </ul>
+            <div class="ratio ratio-16x9 my-3">
+                <iframe src="https://www.youtube.com/embed/9oVfhupb77w" allowfullscreen></iframe>
+            </div>
+            <a href="#inicio" class="btn btn-outline-primary">✕ Ocultar sección</a>
+        </section>
+
+        <!-- Sección Registro -->
+        <section id="registro" class="seccion-dinamica shadow-sm">
+            <h3 class="text-primary mb-4">Registro de Elementos</h3>
+            
+            <!-- Mensaje de Alerta Bootstrap -->
+            <div id="mensaje-alerta"></div>
+
+            <form id="formulario-registro" class="mb-4" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Nombre (Mín. 3 caracteres)</label>
+                        <input type="text" id="input-nombre" class="form-control" placeholder="Ej. Aplicación Web">
+                        <div class="invalid-feedback">El nombre debe tener al menos 3 caracteres.</div>
+                        <div class="valid-feedback">¡Nombre válido!</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Categoría o Tipo</label>
+                        <select id="input-categoria" class="form-select">
+                            <option value="">Seleccione una opción...</option>
+                            <option value="Frontend">Frontend</option>
+                            <option value="Backend">Backend</option>
+                            <option value="Fullstack">Fullstack</option>
+                        </select>
+                        <div class="invalid-feedback">Por favor, seleccione una categoría.</div>
+                        <div class="valid-feedback">¡Categoría seleccionada!</div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Descripción (Mín. 10 caracteres)</label>
+                        <input type="text" id="input-descripcion" class="form-control" placeholder="Ej. Sistema de gestión integral">
+                        <div class="invalid-feedback">Escribe una descripción suficiente (mín. 10 caracteres).</div>
+                        <div class="valid-feedback">¡Descripción aceptada!</div>
+                    </div>
+                </div>
+
+                <div class="mt-3 d-flex align-items-center gap-3">
+                    <button type="submit" id="btn-submit" class="btn btn-success">Agregar Registro</button>
+                    <!-- Spinner de Carga Bootstrap -->
+                    <div id="spinner-carga" class="spinner-border text-success d-none" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="alert alert-info py-2 d-flex justify-content-between align-items-center">
+                <span>Total de registros creados: <strong id="total-registros">0</strong></span>
+            </div>
+
+            <h5 class="text-secondary mt-4 mb-3">Elementos Registrados:</h5>
+            
+            <!-- Presentación de datos dinámicos mediante Cards -->
+            <div id="contenedor-cards" class="row g-3"></div>
+
+            <div class="mt-4">
+                <a href="#inicio" class="btn btn-outline-primary">✕ Ocultar sección</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Bootstrap para Confirmación de Eliminación -->
+    <div class="modal fade" id="modalConfirmarEliminar" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="modalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de que desea eliminar este registro? Esta acción no se puede deshacer.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btn-confirmar-eliminar" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript de Bootstrap y JS Personalizado -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
